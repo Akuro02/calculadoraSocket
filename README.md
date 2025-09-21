@@ -60,11 +60,11 @@ gcc src/client/cliente.c src/client/clientProto.c -o client
 
 ## Especificação do protocolo
 ```
-OP A B\n
+OP A B C...\n
 ```
 Onde:
 - `OP ∈ {ADD, SUB, MULT, DIV}`
-- `A, B` são números reais no formato decimal com ponto (ex.: `2`, `-3.5`, `10.0`).
+- `A, B, C` são números reais no formato decimal com ponto (ex.: `2`, `-3.5`, `10.0`).
 
 ### Exemplos
 Requisição → Resposta
