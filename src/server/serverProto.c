@@ -4,32 +4,37 @@
 // FUNCOES DE CALCULADORA
 
 ExpressionResult solveExpression(char *buffer){
-    char *tokens = strtok(buffer, " ");
-    char* operator = tokens;
+    char *tokens = strtok(buffer, " "); // dividir a string em tokens separados por espaco
+    char* operator = tokens; // o primeiro token deve ser o operador
     if (operator == NULL){
         return (ExpressionResult){0, INVALID_OP};
     }
+    // identificar o operador e chamar a funcao correspondente
     if (strcmp(operator, "ADD") == 0){return add(strtok(NULL, " "));}
     else if (strcmp(operator, "SUB") == 0){return sub(strtok(NULL, " "));}
     else if (strcmp(operator, "MULT") == 0){return mult(strtok(NULL, " "));}
     else if (strcmp(operator, "DIV") == 0){return divi(strtok(NULL, " "));}
-    else{return (ExpressionResult){0, INVALID_OP};}
+    else{
+        printf("OPERADOR INVALIDO\n");
+        return (ExpressionResult){0, INVALID_OP};
+    }
 }
 
 ExpressionResult add(char* tokens){
-    printf("SOMA\n");
+    printf("Realizando Soma\n");
     ExpressionResult result = {0, MISSING_VAl};
     while(tokens != NULL){
         result.result += atof(tokens);
         result.status = OK;
         tokens = strtok(NULL, " ");
     }
+    printf("Resultado: %.6f, retornando ao cliente\n", result.result);
     return result;
 }
 
 
 ExpressionResult sub(char* tokens){
-    printf("SUBTRACAO\n");
+    printf("Realizando subtração\n");
     ExpressionResult result = {0, MISSING_VAl};
     if (tokens == NULL){
         return result;
@@ -41,11 +46,12 @@ ExpressionResult sub(char* tokens){
         result.result -= atof(tokens);
         tokens = strtok(NULL, " ");
     }
+    printf("Resultado: %.6f, retornando ao cliente\n", result.result);
     return result;
 }
 
 ExpressionResult mult(char* tokens){
-    printf("MULTIPLICACAO\n");
+    printf("Realizando multiplicação\n");
     ExpressionResult result = {0, MISSING_VAl};
     if (tokens == NULL){
         return result;
@@ -57,11 +63,12 @@ ExpressionResult mult(char* tokens){
         result.result *= atof(tokens);
         tokens = strtok(NULL, " ");
     }
+    printf("Resultado: %.6f, retornando ao cliente\n", result.result);
     return result;
 }
 
 ExpressionResult divi(char* tokens){
-    printf("DIVISAO\n");
+    printf("Realizando divisão\n");
     ExpressionResult result = {0, MISSING_VAl};
     if (tokens == NULL){
         return result;
@@ -78,19 +85,21 @@ ExpressionResult divi(char* tokens){
         result.result /= divisor;
         tokens = strtok(NULL, " ");
     }
+    printf("Resultado: %.6f, retornando ao cliente\n", result.result);
     return result;
 }
 
 // FUNCOES DE SOCKET
 
 int socketCreateAndConnect(char serverIP[], int port){
+    printf("Criando socket\n");
     int server_socket = socket(AF_INET, SOCK_STREAM, 0); // Socket -> AF_INET = IPv4 | SOCK_STREAM = TCP | 0 = protocolo padrao para TCP
     if (server_socket < 0) {
         perror("Erro ao criar o socket");
         return -1;  
     }
-
-    printf("%s\n%i\n", serverIP, port);
+    printf("Socket criado\n");
+    printf("IP: %s\nPorta: %i\n", serverIP, port);
 
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
@@ -98,9 +107,11 @@ int socketCreateAndConnect(char serverIP[], int port){
     server_address.sin_addr.s_addr = inet_addr(serverIP);
 
     // ligar o socket ao endereco e porta especificada.
+    printf("Ligando o socket ao endereco e porta especificada\n");
     bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address));
 
     // Colocar o socket de servidor em modo passivo, ou seja, ele espera o cliente fazer a conexao
+    printf("Colocando o socket em modo passivo\n");
     listen(server_socket, 5);
 
     return server_socket;
@@ -141,5 +152,6 @@ void sendMessage(ExpressionResult result, int client_socket){
         default:
             strcpy(message, "ERR");
     }
+    printf("Mensagem enviada: %s\n", message);
     send(client_socket, message, strlen(message), 0);
 }

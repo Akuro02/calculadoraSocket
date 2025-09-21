@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
         strcpy(serverIP, argv[2]);
     }
 
-    printf("%s\n%i\n", serverIP, port);
+    printf("IP: %s\nPorta: %i\n", serverIP, port);
 
     // Criação do socket
     int client_socket = socketCreateAndConnect(serverIP, port);

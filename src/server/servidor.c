@@ -32,7 +32,6 @@ int main(int argc, char* argv[]) {
         int client_socket = accept(server_socket, NULL, NULL);
         printf("Cliente conectado\n");
         while(1){
-            printf("Client: %i\n", client_socket);
             char buffer[256];
             int recv_status = receiveMessage(client_socket, buffer, sizeof(buffer));
             if (recv_status < 0){
