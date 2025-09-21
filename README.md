@@ -9,7 +9,7 @@ Calculadora simples de computação distribuída utilizando sockets
 - ✅ **Parsing** robusto (validar quantidade de tokens, tipos numéricos e operação).
 - ✅ **Tratamento de erros** (entrada inválida e divisão por zero).
 - ✅ **Formatação** do resultado com **ponto decimal** (não depender do *locale*). Sugestão: `printf("%.6f\n", valor)` para `R`.
-- ❌ **Makefile** com *targets* `all`, `server`, `client`, `clean`.
+- ✅ **Makefile** com *targets* `all`, `server`, `client`, `clean`.
 - ❌ **README.md** explicando execução, exemplos e decisões de projeto.
 
 ### Requisitos Recomendados
