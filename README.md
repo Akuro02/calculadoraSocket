@@ -63,7 +63,7 @@ gcc src/client/cliente.c src/client/clientProto.c -o client
 OP A B\n
 ```
 Onde:
-- `OP ∈ {ADD, SUB, MUL, DIV}`
+- `OP ∈ {ADD, SUB, MULT, DIV}`
 - `A, B` são números reais no formato decimal com ponto (ex.: `2`, `-3.5`, `10.0`).
 
 ### Exemplos
