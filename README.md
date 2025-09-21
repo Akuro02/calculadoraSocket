@@ -15,7 +15,7 @@ Calculadora simples de computação distribuída utilizando sockets
 ### Requisitos Recomendados
 - ❌ Logs simples no servidor (conexões, requisições, erros). 
 - ✅ Encerramento limpo ao receber `SIGINT` (Ctrl+C). 
-- ❌ Parametrização de endereço/porta no cliente (`./client 127.0.0.1 5050`). 
+- ✅ Parametrização de endereço/porta no cliente (`./client 127.0.0.1 5050`). 
 
 ### Bônus (até +10%)
 - ❌ **Concorrência**: atender múltiplos clientes (via `fork`, *threads* ou `select/poll`). 
