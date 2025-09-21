@@ -4,7 +4,7 @@ Calculadora simples de computação distribuída utilizando sockets
 ---
 
 ## Requisitos Mínimos
-1. **Servidor TCP (IPv4)** funcional na porta indicada; pode ser **single-process/single-thread** (um cliente por vez). - [ X ]
+- [ X ] **Servidor TCP (IPv4)** funcional na porta indicada; pode ser **single-process/single-thread** (um cliente por vez). 
 2. **Cliente** de terminal que lê linhas do **stdin**, envia ao servidor e imprime a resposta. [X]
 3. **Parsing** robusto (validar quantidade de tokens, tipos numéricos e operação). [X]
 4. **Tratamento de erros** (entrada inválida e divisão por zero). [X]
