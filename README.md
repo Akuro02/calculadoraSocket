@@ -4,23 +4,22 @@ Calculadora simples de computação distribuída utilizando sockets
 ---
 
 ## Requisitos Mínimos
-- [ X ] **Servidor TCP (IPv4)** funcional na porta indicada; pode ser **single-process/single-thread** (um cliente por vez). 
-2. **Cliente** de terminal que lê linhas do **stdin**, envia ao servidor e imprime a resposta. [X]
-3. **Parsing** robusto (validar quantidade de tokens, tipos numéricos e operação). [X]
-4. **Tratamento de erros** (entrada inválida e divisão por zero). [X]
-5. **Formatação** do resultado com **ponto decimal** (não depender do *locale*). Sugestão: `printf("%.6f\n", valor)` para `R`. [X]
-6. **Makefile** com *targets* `all`, `server`, `client`, `clean`. [ ]
-7. **README.md** explicando execução, exemplos e decisões de projeto. [ ]
+- [ ] **Servidor TCP (IPv4)** funcional na porta indicada; pode ser **single-process/single-thread** (um cliente por vez). - [ ]
+- [ ] **Cliente** de terminal que lê linhas do **stdin**, envia ao servidor e imprime a resposta. [X]
+- [ ] **Parsing** robusto (validar quantidade de tokens, tipos numéricos e operação). [X]
+- [ ] **Tratamento de erros** (entrada inválida e divisão por zero). [X]
+- [ ] **Formatação** do resultado com **ponto decimal** (não depender do *locale*). Sugestão: `printf("%.6f\n", valor)` para `R`. [X]
+- [ ] **Makefile** com *targets* `all`, `server`, `client`, `clean`. [ ]
+- [ ] **README.md** explicando execução, exemplos e decisões de projeto. [ ]
 
 ### Requisitos Recomendados
-- Logs simples no servidor (conexões, requisições, erros). [ ]
-- Encerramento limpo ao receber `SIGINT` (Ctrl+C). [X]
-- Parametrização de endereço/porta no cliente (`./client 127.0.0.1 5050`). [ ]
+- [ ] Logs simples no servidor (conexões, requisições, erros). [ ]
+- [ ] Encerramento limpo ao receber `SIGINT` (Ctrl+C). [X]
+- [ ] Parametrização de endereço/porta no cliente (`./client 127.0.0.1 5050`). [ ]
 
 ### Bônus (até +10%)
-- **Concorrência**: atender múltiplos clientes (via `fork`, *threads* ou `select/poll`). [ ]
-- **Testes automatizados** (scripts que disparam casos de teste e comparam saídas). [ ]
-- **Protocolo estendido** (ex.: aceitar forma infixa, mensagens `HELP`, `VERSION`). [ ]
+- [ ] **Concorrência**: atender múltiplos clientes (via `fork`, *threads* ou `select/poll`). [ ]
+- [ ] **Testes automatizados** (scripts que disparam casos de teste e comparam saídas). [ ]
+- [ ] **Protocolo estendido** (ex.: aceitar forma infixa, mensagens `HELP`, `VERSION`). [ ]
 
 ---
-- [ ] Test
