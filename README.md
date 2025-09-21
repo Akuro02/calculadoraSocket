@@ -23,3 +23,4 @@ Calculadora simples de computação distribuída utilizando sockets
 - **Protocolo estendido** (ex.: aceitar forma infixa, mensagens `HELP`, `VERSION`). [ ]
 
 ---
+- [ ] Test
