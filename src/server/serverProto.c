@@ -1,96 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <string.h>
-#include <signal.h>
+#include "../../include/serverProto.h"
 
-#define defaultIP "127.0.0.1"
-#define defaultPort 5050
 
-typedef enum Stat{
-    OK,
-    DIV_ZERO,
-    INVALID_OP,
-    MISSING_VAl
-} Status;
-
-typedef struct {
-    double result;
-    Status status;
-} ExpressionResult;
-
-void handleSignal(int sig){
-    printf("\nServidor interrompido\n");
-    exit(sig);
-}
-
-ExpressionResult solveExpression(char *buffer);
-ExpressionResult add(char* tokens);
-ExpressionResult sub(char* tokens);
-ExpressionResult mult(char* tokens);
-ExpressionResult divi(char* tokens);
-void sendMessage(ExpressionResult result, int client_socket);
-
-int main(int argc, char* argv[]) {
-    signal(SIGINT, handleSignal);
-
-    int port = defaultPort; // porta padrao
-    char IPAddr[] = defaultIP;
-    if (argc >= 2){
-        port = atoi(argv[1]); // porta alterada pelo cliente
-    }
-    if (argc >= 3){
-        strcpy(IPAddr, argv[2]);
-    }
-    // Criação do socket
-    int server_socket = socket(AF_INET, SOCK_STREAM, 0); // Socket -> AF_INET = IPv4 | SOCK_STREAM = TCP | 0 = protocolo padrao para TCP
-    if (server_socket < 0) {
-        perror("Erro ao criar o socket");
-        return -1;  
-    }
-
-    printf("%s\n%i\n", defaultIP, port);
-
-    struct sockaddr_in server_address;
-    server_address.sin_family = AF_INET;
-    server_address.sin_port = port;
-    server_address.sin_addr.s_addr = inet_addr(defaultIP);
-
-    // ligar o socket ao endereco e porta especificada.
-    bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address));
-
-    // Colocar o socket de servidor em modo passivo, ou seja, ele espera o cliente fazer a conexao
-    listen(server_socket, 5);
-
-    // Server extrai o primeiro pedido de conexao da fila, cria um novo socket conectado e retorna um novo file descriptor para aquele socket.
-    while(1){
-        printf("Conectando ao cliente\n");
-        int client_socket = accept(server_socket, NULL, NULL);
-        printf("Cliente conectado\n");
-        while(1){
-            printf("Client: %i\n", client_socket);
-            char buffer[256];
-            memset(buffer, 0, sizeof(buffer));
-            ssize_t message = recv(client_socket, buffer, sizeof(buffer), 0);
-            if(message <= 0){
-                printf("Client Disconnected\n");
-                close(client_socket);
-                break;
-            }
-            printf("Mensagem recebida: %s\n", buffer);
-            
-            
-            ExpressionResult result = solveExpression(buffer);
-            sendMessage(result, client_socket);
-        }
-    }
-    printf("Closed\n");
-    close(server_socket);
-}
+// FUNCOES DE CALCULADORA
 
 ExpressionResult solveExpression(char *buffer){
     char *tokens = strtok(buffer, " ");
@@ -115,6 +26,7 @@ ExpressionResult add(char* tokens){
     }
     return result;
 }
+
 
 ExpressionResult sub(char* tokens){
     printf("SUBTRACAO\n");
@@ -167,6 +79,47 @@ ExpressionResult divi(char* tokens){
         tokens = strtok(NULL, " ");
     }
     return result;
+}
+
+// FUNCOES DE SOCKET
+
+int socketCreateAndConnect(char serverIP[], int port){
+    int server_socket = socket(AF_INET, SOCK_STREAM, 0); // Socket -> AF_INET = IPv4 | SOCK_STREAM = TCP | 0 = protocolo padrao para TCP
+    if (server_socket < 0) {
+        perror("Erro ao criar o socket");
+        return -1;  
+    }
+
+    printf("%s\n%i\n", serverIP, port);
+
+    struct sockaddr_in server_address;
+    server_address.sin_family = AF_INET;
+    server_address.sin_port = port;
+    server_address.sin_addr.s_addr = inet_addr(serverIP);
+
+    // ligar o socket ao endereco e porta especificada.
+    bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address));
+
+    // Colocar o socket de servidor em modo passivo, ou seja, ele espera o cliente fazer a conexao
+    listen(server_socket, 5);
+
+    return server_socket;
+}
+
+int receiveMessage(int client_socket, char buffer[], ssize_t buffer_size){
+    memset(buffer, 0, buffer_size);
+    ssize_t message = recv(client_socket, buffer, buffer_size, 0);
+    if (message <= 0){
+        printf("Cliente desconectou\n");
+        close(client_socket);
+        return -1;
+    }
+    printf("Mensagem recebida: %s\n", buffer);
+}
+
+void solveAndRespond(int client_socket, char* buffer){
+    ExpressionResult result = solveExpression(buffer);
+    sendMessage(result, client_socket);
 }
 
 void sendMessage(ExpressionResult result, int client_socket){

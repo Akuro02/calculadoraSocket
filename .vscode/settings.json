@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "clienteproto.h": "c",
+        "serverproto.h": "c"
+    }
+}
