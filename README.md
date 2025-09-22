@@ -60,7 +60,7 @@ gcc src/client/cliente.c src/client/clientProto.c -o client
 
 ---
 ### Testes:
-Após a criação dos executáveis server e client, pode-se usar o arquivo test.sh, que contém alguns testes automatizados.
+Após a criação dos executáveis `server` e `client`, pode-se usar o arquivo test.sh, que contém alguns testes automatizados.
 - Usando makefile
 ``` bash
 make test
