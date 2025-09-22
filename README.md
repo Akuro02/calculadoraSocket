@@ -58,6 +58,17 @@ gcc src/client/cliente.c src/client/clientProto.c -o client
 ./client <PORT> <IP>
 ```
 
+---
+### Testes:
+- Usando makefile
+``` bash
+make test
+```
+- Manualmente:
+``` bash
+bash tests/test.sh
+```
+
 ## Especificação do protocolo
 ```
 OP A B C...\n
@@ -76,7 +87,7 @@ Requisição → Resposta
 ```
 ADD 10 2\n      ->  OK 12\n
 SUB 7 9\n      ->  OK -2\n
-MUL -3 3.5\n    ->  OK -10.5\n
+MULT -3 3.5\n    ->  OK -10.5\n
 DIV 5  0\n      ->  ERR divisao_por_zero\n
 ```
 
