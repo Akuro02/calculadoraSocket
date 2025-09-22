@@ -66,13 +66,18 @@ Onde:
 - `OP ∈ {ADD, SUB, MULT, DIV}`
 - `A, B` são números reais no formato decimal com ponto (ex.: `2`, `-3.5`, `10.0`).
 
+`ADD A B ... X` : Soma todos os operandos `(A + B + ... + X)` <br>
+`SUB A B ... X` : Subtrai todos os operandos `(A - B - ... - X)` <br>
+`MULT A B ... X` : Multiplica todos os operandos `(A * B * ... * X)` <br>
+`DIV A B ... X` : Divide todos os operandos `(A / B / ... / X)` <br>
+
 ### Exemplos
 Requisição → Resposta
 ```
 ADD 10 2\n      ->  OK 12\n
-SUB 7  9\n      ->  OK -2\n
+SUB 7 9\n      ->  OK -2\n
 MUL -3 3.5\n    ->  OK -10.5\n
-DIV 5  0\n      ->  ERR EZDV divisao_por_zero\n
+DIV 5  0\n      ->  ERR divisao_por_zero\n
 ```
 
 ## Exemplo de uso

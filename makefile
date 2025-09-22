@@ -8,3 +8,8 @@ client: src/client/cliente.c src/client/clientProto.c
 
 clean:
 	rm -f server client
+
+.PHONY: test
+
+test:
+	bash tests/test.sh

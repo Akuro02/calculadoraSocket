@@ -36,6 +36,9 @@ int main(int argc, char* argv[]){
                 calculator(client_socket);
                 break;
             case 2:
+                help();
+                break;
+            case 3:
                 exit(0);
             default:
                 printf("Expressao invalida, tente novamente\n");

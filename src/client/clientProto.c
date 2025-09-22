@@ -4,7 +4,8 @@
 void showMenu(){
     printf("---------------------- MENU -------------------\n"
             "1. Inserir e enviar operacao ao servidor\n"
-            "2. Sair\n"
+            "2. Ajuda\n"
+            "3. Sair\n"
             "------------------------------------------------\n"
             "Escolha: ");
 }
@@ -63,5 +64,36 @@ void receiveResult(int client_socket, char buffer[256], int size){ // FUNCAO QUE
     printf("Resultado: ");
 } 
 
+void help(){
+    char c = getchar(); // cuidando do \n que sobra do scanf
+    printf("---------------Instrucoes de uso:---------------\n");
+    printf("O servidor aceita as seguintes operacoes:\n");
+    printf("ADD x1 x2 ... xn : Soma todos os operandos (x1 + x2 + ... + xn)\n");
+    printf("SUB x1 x2 ... xn : Subtrai todos os operandos (x1 - x2 - ... - xn)\n");
+    printf("MULT x1 x2 ... xn : Multiplica todos os operandos (x1 * x2 * ... * xn)\n");
+    printf("DIV x1 x2 ... xn : Divide todos os operandos (x1 / x2 / ... / xn)\n");
+    printf("Aperte ENTER para continuar ou X para sair\n");
+    c = getchar();
+    if (c == 'X' || c == 'x'){
+        printf("------------------------------------------------\n");
+        return;
+    }
+    printf("Exemplos de expressoes validas:\n");
+    printf("ADD 5 10 15\n");
+    printf("SUB 100 50 25\n");
+    printf("MULT 2 3 4\n");
+    printf("DIV 100 2 5\n");
+    printf("Aperte ENTER para continuar ou X para sair\n");
+    c = getchar();
+    if (c == 'X' || c == 'x'){
+        printf("------------------------------------------------\n");
+        return;
+    }
+    printf("Observações\n");
+    printf("1. Os operandos podem ser numeros inteiros ou decimais\n");
+    printf("2. O servidor retorna erro se houver divisao por zero, operador invalido ou falta de operandos\n");
+    printf("3. Se apenas um operando for digitado, o servidor ira apenas retorna-lo\n");
+    printf("------------------------------------------------\n");
+}
 
 

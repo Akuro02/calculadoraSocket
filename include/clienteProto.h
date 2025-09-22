@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 void showMenu(); // mostra o menu de opcoes
+void help(); // mostra a ajuda
 void calculator(int client_socket); // funcao principal da calculadora
 
 //Prototipos de funcoes de socket
