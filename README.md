@@ -3,7 +3,7 @@
 ## Feito Por:
 - Marco Antonio de Camargo - 10418309
 - Natan Moreira Passos - 10417916
-- Nicolas Henriques de Almeida - 10418357
+- Nicolas Henriques de Almeida - 10418357 <br> <br>
 Sala 06G - Mackenzie
 
 ## Objetivo
