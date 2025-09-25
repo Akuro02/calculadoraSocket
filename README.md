@@ -1,5 +1,11 @@
 # Calculadora Cliente-Servidor com Sockets em C
 
+## Feito Por:
+- Marco Antonio de Camargo - 10418309
+- Natan Moreira Passos - 10417916
+- Nicolas Henriques de Almeida - 10418357
+Sala 06G - Mackenzie
+
 ## Objetivo
 Implementar uma aplicação **cliente–servidor** em C, usando **sockets TCP (IPv4)**, na qual o cliente envia **operações matemáticas** e o servidor **executa** e **retorna o resultado**.<br>
 
